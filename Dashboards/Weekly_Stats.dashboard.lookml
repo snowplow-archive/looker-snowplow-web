@@ -1,17 +1,17 @@
-- dashboard: daily_stats
-  title: Daily Stats
+- dashboard: weekly_stats
+  title: Weekly Stats
   layout: newspaper
   preferred_viewer: dashboards-next
   elements:
-  - title: Session Bounced Comparison - Daily
-    name: Session Bounced Comparison - Daily
+  - title: Session Bounced Comparison - Weekly
+    name: Session Bounced Comparison - Weekly
     model: snowplow-looker
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.user_bounced]
     fill_fields: [sessions.user_bounced]
     filters:
-      sessions.start_tstamp_date: 1 days
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.session_count desc]
     limit: 500
     column_limit: 50
@@ -56,8 +56,8 @@
     col: 0
     width: 8
     height: 6
-  - title: Daily Session by New Visitors - Daily
-    name: Daily Session by New Visitors - Daily
+  - title: Daily Session by New Visitors - Weekly
+    name: Daily Session by New Visitors - Weekly
     model: snowplow-looker
     explore: sessions
     type: looker_area
@@ -65,7 +65,7 @@
     pivots: [sessions.first_session]
     fill_fields: [sessions.start_tstamp_date, sessions.first_session]
     filters:
-      sessions.start_tstamp_date: 1 days
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.start_tstamp_date desc, sessions.first_session]
     limit: 500
     column_limit: 50
@@ -124,19 +124,19 @@
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    row: 6
+    row: 24
     col: 0
-    width: 8
-    height: 6
-  - title: Engaged User Count - Daily
-    name: Engaged User Count - Daily
+    width: 24
+    height: 9
+  - title: Engaged User Count - Weekly
+    name: Engaged User Count - Weekly
     model: snowplow-looker
     explore: page_views
     type: looker_pie
     fields: [page_views.user_count, page_views.user_engaged]
     fill_fields: [page_views.user_engaged]
     filters:
-      page_views.start_tstamp_date: 1 days
+      page_views.start_tstamp_date: 7 days
     sorts: [page_views.user_count desc]
     limit: 500
     column_limit: 50
@@ -172,18 +172,18 @@
     defaults_version: 1
     series_types: {}
     row: 6
-    col: 8
+    col: 0
     width: 8
     height: 6
-  - title: Firs/Returning Session - Daily
-    name: Firs/Returning Session - Daily
+  - title: Firs/Returning Session - Weekly
+    name: Firs/Returning Session - Weekly
     model: snowplow-looker
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.first_session_or_returning_session]
     fill_fields: [sessions.first_session_or_returning_session]
     filters:
-      sessions.start_tstamp_date: 1 days
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.session_count desc]
     limit: 500
     column_limit: 50
@@ -216,18 +216,18 @@
     defaults_version: 1
     series_types: {}
     row: 6
-    col: 16
+    col: 8
     width: 8
     height: 6
-  - title: New User Count - Daily
-    name: New User Count - Daily
+  - title: New User Count - Weekly
+    name: New User Count - Weekly
     model: snowplow-looker
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count]
     fill_fields: [page_views.start_tstamp_date]
     filters:
-      page_views.start_tstamp_date: 1 days
+      page_views.start_tstamp_date: 7 days
     sorts: [page_views.start_tstamp_date desc]
     limit: 500
     query_timezone: Australia/Melbourne
@@ -303,19 +303,19 @@
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    row: 12
+    row: 33
     col: 0
-    width: 8
-    height: 6
-  - title: New vs Old Users Sessions - Daily
-    name: New vs Old Users Sessions - Daily
+    width: 24
+    height: 8
+  - title: New vs Old Users Sessions - Weekly
+    name: New vs Old Users Sessions - Weekly
     model: snowplow-looker
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.new_user]
     fill_fields: [sessions.new_user]
     filters:
-      sessions.start_tstamp_date: 1 days
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.session_count desc]
     limit: 500
     column_limit: 50
@@ -356,18 +356,18 @@
     totals_color: "#808080"
     defaults_version: 1
     series_types: {}
-    row: 12
-    col: 8
+    row: 6
+    col: 16
     width: 8
     height: 6
-  - title: New/Old User - Daily
-    name: New/Old User - Daily
+  - title: New/Old User - Weekly
+    name: New/Old User - Weekly
     model: snowplow-looker
     explore: page_views
     type: looker_grid
     fields: [page_views.new_user_count, page_views.returned_user_count]
     filters:
-      page_views.start_tstamp_date: 1 days
+      page_views.start_tstamp_date: 7 days
     sorts: [page_views.new_user_count desc]
     limit: 50
     query_timezone: Australia/Melbourne
@@ -443,19 +443,19 @@
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    row: 18
+    row: 12
     col: 0
     width: 8
     height: 6
-  - title: New Vs Returned Users - Daily
-    name: New Vs Returned Users - Daily
+  - title: New Vs Returned Users - Weekly
+    name: New Vs Returned Users - Weekly
     model: snowplow-looker
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count, page_views.returned_user_count]
     fill_fields: [page_views.start_tstamp_date]
     filters:
-      page_views.start_tstamp_date: 1 days
+      page_views.start_tstamp_date: 7 days
     sorts: [page_views.start_tstamp_date desc]
     limit: 500
     query_timezone: Australia/Melbourne
@@ -531,12 +531,12 @@
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    row: 18
-    col: 8
-    width: 8
-    height: 6
-  - title: Session Bounced - Daily
-    name: Session Bounced - Daily
+    row: 41
+    col: 0
+    width: 24
+    height: 9
+  - title: Session Bounced - Weekly
+    name: Session Bounced - Weekly
     model: snowplow-looker
     explore: sessions
     type: looker_area
@@ -544,7 +544,7 @@
     pivots: [sessions.user_bounced]
     fill_fields: [sessions.user_bounced, sessions.start_tstamp_date]
     filters:
-      sessions.start_tstamp_date: 1 days
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.user_bounced, sessions.start_tstamp_date desc]
     query_timezone: Australia/Melbourne
     x_axis_gridlines: false
@@ -584,18 +584,18 @@
     defaults_version: 1
     ordering: none
     show_null_labels: false
-    row: 12
-    col: 16
-    width: 8
-    height: 6
-  - title: Total Session - Daily
-    name: Total Session - Daily
+    row: 50
+    col: 0
+    width: 24
+    height: 9
+  - title: Total Session - Weekly
+    name: Total Session - Weekly
     model: snowplow-looker
     explore: page_views
     type: single_value
     fields: [sessions.session_count]
     filters:
-      sessions.start_tstamp_date: 1 days
+      sessions.start_tstamp_date: 7 days
     limit: 500
     query_timezone: Australia/Melbourne
     custom_color_enabled: true
@@ -625,14 +625,14 @@
     col: 8
     width: 8
     height: 6
-  - title: Total User - Daily
-    name: Total User - Daily
+  - title: Total User - Weekly
+    name: Total User - Weekly
     model: snowplow-looker
     explore: page_views
     type: looker_geo_coordinates
     fields: [sessions.geo_location, sessions.user_count]
     filters:
-      sessions.start_tstamp_date: 1 days
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.user_count desc]
     column_limit: 50
     map: world
@@ -667,18 +667,18 @@
     defaults_version: 1
     series_types: {}
     quantize_colors: false
-    row: 30
+    row: 59
     col: 0
     width: 24
     height: 14
-  - title: Total User  Numbers - Daily
-    name: Total User  Numbers - Daily
+  - title: Total User Numbers - Weekly
+    name: Total User Numbers - Weekly
     model: snowplow-looker
     explore: page_views
     type: single_value
     fields: [users.user_count]
     filters:
-      page_views.start_tstamp_date: 1 days
+      page_views.start_tstamp_date: 7 days
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -690,42 +690,20 @@
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
-    map_plot_mode: points
-    heatmap_gridlines: false
-    heatmap_gridlines_empty: false
-    heatmap_opacity: 0.5
-    show_region_field: true
-    draw_map_labels_above_data: true
-    map_tile_provider: light
-    map_position: fit_data
-    map_scale_indicator: 'off'
-    map_pannable: true
-    map_zoomable: true
-    map_marker_type: circle
-    map_marker_icon_name: default
-    map_marker_radius_mode: proportional_value
-    map_marker_units: meters
-    map_marker_proportional_scale_type: linear
-    map_marker_color_mode: fixed
-    show_view_names: false
-    show_legend: true
-    quantize_map_value_colors: false
-    reverse_map_value_colors: false
     defaults_version: 1
-    series_types: {}
     row: 0
     col: 16
     width: 8
     height: 6
-  - title: Engagement Score - Daily
-    name: Engagement Score - Daily
+  - title: Engagement Score - Weekly
+    name: Engagement Score - Weekly
     model: snowplow-looker
     explore: page_views
     type: looker_grid
     fields: [page_views.engagement_type, page_views.user_count]
     pivots: [page_views.engagement_type]
     filters:
-      page_views.start_tstamp_date: 1 days
+      page_views.start_tstamp_date: 7 days
     sorts: [page_views.engagement_type]
     limit: 500
     query_timezone: Australia/Melbourne
@@ -745,12 +723,12 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    row: 18
-    col: 16
+    row: 12
+    col: 8
     width: 8
     height: 6
-  - title: Traffic Numbers - Daily
-    name: Traffic Numbers - Daily
+  - title: Traffic Numbers - Weekly
+    name: Traffic Numbers - Weekly
     model: snowplow-looker
     explore: page_views
     type: looker_grid
@@ -758,7 +736,7 @@
       page_views.total_email_traffic, page_views.total_organic_traffic, page_views.total_paid_traffic,
       page_views.total_social_traffic]
     filters:
-      page_views.start_tstamp_date: 1 days
+      page_views.start_tstamp_date: 7 days
     limit: 500
     column_limit: 50
     show_view_names: false
@@ -777,12 +755,12 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    row: 24
+    row: 18
     col: 0
     width: 8
     height: 6
-  - title: New Users Traffic - Daily
-    name: New Users Traffic - Daily
+  - title: New Users Traffic - Weekly
+    name: New Users Traffic - Weekly
     model: snowplow-looker
     explore: page_views
     type: looker_grid
@@ -790,7 +768,7 @@
       page_views.total_email_traffic, page_views.total_organic_traffic, page_views.total_paid_traffic,
       page_views.total_social_traffic]
     filters:
-      page_views.start_tstamp_date: 1 days
+      page_views.start_tstamp_date: 7 days
       page_views.domain_sessionidx: '1'
     limit: 500
     column_limit: 50
@@ -810,12 +788,12 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    row: 24
+    row: 18
     col: 8
     width: 8
     height: 6
-  - title: Returning Users Traffic - Daily
-    name: Returning Users Traffic - Daily
+  - title: Returning Users Traffic - Weekly
+    name: Returning Users Traffic - Weekly
     model: snowplow-looker
     explore: page_views
     type: looker_grid
@@ -823,7 +801,7 @@
       page_views.total_email_traffic, page_views.total_organic_traffic, page_views.total_paid_traffic,
       page_views.total_social_traffic]
     filters:
-      page_views.start_tstamp_date: 1 days
+      page_views.start_tstamp_date: 7 days
       page_views.domain_sessionidx: ">1"
     limit: 500
     column_limit: 50
@@ -843,7 +821,7 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    row: 24
+    row: 12
     col: 16
     width: 8
     height: 6
