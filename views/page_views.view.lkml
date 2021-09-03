@@ -1280,36 +1280,11 @@ view: page_views {
 
   measure: total_page_views {
     label: "total_page_views"
-    group_label: "Page View Reporting"
+    group_label: "Count"
     description: "total number of distinct page views"
     type: count_distinct
     sql: ${page_view_id} ;;
   }
 
-
-  measure: page_views_per_visit {
-    label: "page_views_per_visit"
-    group_label: "Page View Reporting"
-    description: "Page Views per visit"
-    type: number
-    value_format_name: decimal_2
-    sql: ${total_page_views}/NULLIF(${count},0)::REAL ;;
-  }
-
-  measure: visits_yesterday_last_week {
-    label: "visits_yesterday_last_week"
-    type: number
-    sql: count(distinct case when ${start_tstamp_date} = current_date - 8 then ${domain_sessionid} else null end) ;;
-  }
-
-#NOT WORKING
-  measure: page_views_per_visit_lw {
-    label: "page_views_per_visit_lw"
-    group_label: "Page View Reporting"
-    description: "Page Views per visit"
-    type: number
-    value_format_name: decimal_2
-    sql: sum(case when ${start_tstamp_date} = current_date - 8 then 1 else 0 end)/nullif(${visits_yesterday_last_week},0)::REAL  ;;
-  }
 
 }

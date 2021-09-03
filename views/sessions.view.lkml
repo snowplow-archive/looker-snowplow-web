@@ -861,21 +861,6 @@ dimension: first_session_or_returning_session {
 
 # Measures
 
-  measure: total_time_engaged {
-    label: "total_time_engaged"
-    type: sum
-    description: "Total "
-    sql: ${engaged_time_in_s} ;;
-    value_format: "#,##0\"s\""
-  }
-
-  measure: Average_time_engaged {
-    label: "Average_time_engaged"
-    type: average
-    sql: ${engaged_time_in_s} ;;
-    value_format: "#,##0\"s\""
-  }
-
   measure: Count {
     type: count
     hidden: yes

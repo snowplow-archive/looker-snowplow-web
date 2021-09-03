@@ -156,6 +156,7 @@
     "geo_location" : "User Location",
     "engagement_type" : "Engagement Type",
     "enagagement_score":"Engagement Score",
-    "traffic_type":"Traffic Type"
+    "traffic_type":"Traffic Type",
+    "session_period":"Session Period"
   }
   
