@@ -924,15 +924,6 @@ dimension: first_session_or_returning_session {
     sql: ${domain_sessionidx} =1 ;;
   }
 
-  dimension: newuser_test {
-    type: string
-    sql: case when ${domain_sessionidx}=1 then 'New' when ${domain_sessionidx}>1 then 'Old' else NULL end ;;
-  }
-  measure: newusertest {
-    type: count_distinct
-    sql: CASE WHEN ${new_user}='Yes' THEN ${domain_userid} ELSE NULL END ;;
-  }
-
 
   dimension_group: session_minutes {
     label: "session_minutes"
