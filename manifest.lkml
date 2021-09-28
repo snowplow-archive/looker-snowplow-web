@@ -23,13 +23,13 @@ project_name: "snowplow-looker"
 
 
     constant: page_views_explore {
-      value: "Snowplow Insights - Page Views"
+      value: "Page Views"
     }
     constant: sessions_explore {
-      value: "Snowplow Insights - Sessions"
+      value: "Sessions"
     }
     constant: users_explore {
-      value: "Snowplow Insights - Users"
+      value: "Users"
     }
 
 
