@@ -1,5 +1,5 @@
 view: sessions {
-  label: "@{sessions_view}"
+  label: "Sessions"
   sql_table_name: derived.sessions ;;
   drill_fields: [domain_sessionidx]
 
@@ -23,7 +23,6 @@ view: sessions {
     type: number
     sql: ${TABLE}.absolute_time_in_s ;;
   }
-
 
 
 # Agent
@@ -76,7 +75,6 @@ view: sessions {
   }
 
 
-
 # App ID
   dimension: app_id {
     label: "app_id"
@@ -85,7 +83,6 @@ view: sessions {
     type: string
     sql: ${TABLE}.app_id ;;
   }
-
 
 
 # Browser
@@ -106,7 +103,6 @@ view: sessions {
   }
 
 
-
 # Category
   dimension: category {
     label: "category"
@@ -115,7 +111,6 @@ view: sessions {
     type: string
     sql: ${TABLE}.category ;;
   }
-
 
 
 # Device
@@ -170,7 +165,6 @@ view: sessions {
   }
 
 
-
 # User
   dimension: domain_userid {
     label: "domain_userid"
@@ -179,7 +173,6 @@ view: sessions {
     type: string
     sql: ${TABLE}.domain_userid ;;
   }
-
 
 
 # Time Stamp
@@ -208,7 +201,6 @@ view: sessions {
     type: number
     sql: ${TABLE}.engaged_time_in_s ;;
   }
-
 
 
 # First Page
@@ -267,7 +259,6 @@ view: sessions {
     type: string
     sql: ${TABLE}.first_page_urlscheme ;;
   }
-
 
 
 # geographical
@@ -345,7 +336,6 @@ view: sessions {
   }
 
 
-
 # Last Page
   dimension: last_page_title {
     label: "last_page_title"
@@ -404,7 +394,7 @@ view: sessions {
   }
 
 
-# LAyout
+# Layout
   dimension: layout_engine_class {
     label: "layout_engine_class"
     description: "Class of layout engine e.g. Browser"
@@ -454,8 +444,7 @@ view: sessions {
   }
 
 
-
-# MArketing
+# Marketing
   dimension: mkt_campaign {
     label: "mkt_campaign"
     description: "The campaign ID e.g. ‘diageo-123’"
@@ -512,8 +501,6 @@ view: sessions {
     sql: ${TABLE}.mkt_term ;;
   }
 
-
-
   dimension: network_userid {
     label: "network_userid"
     description: "User ID set by Snowplow using 3rd party cookie e.g. ‘ecdff4d0-9175-40ac-a8bb-325c49733607’"
@@ -521,7 +508,6 @@ view: sessions {
     type: string
     sql: ${TABLE}.network_userid ;;
   }
-
 
 
 # OS
@@ -614,7 +600,7 @@ view: sessions {
   }
 
 
-# PAge Views
+# Page Views
   dimension: page_views {
     label: "page_views"
     description: "The number of distinct page views within a session"
@@ -622,7 +608,6 @@ view: sessions {
     type: number
     sql: ${TABLE}.page_views ;;
   }
-
 
 
 # Bots
@@ -641,7 +626,6 @@ view: sessions {
     type: string
     sql: ${TABLE}.reason ;;
   }
-
 
 
 # Referrer
@@ -753,8 +737,7 @@ view: sessions {
   }
 
 
-
-# USer Agent
+# User Agent
   dimension: user_ipaddress {
     label: "user_ipaddress"
     description: "User IP address e.g. ‘92.231.54.234’"
@@ -871,8 +854,7 @@ dimension: first_session_or_returning_session {
       domain_sessionid,
       start_tstamp_time,
       end_tstamp_time,
-      page_views,
-      total_time_engaged
+      page_views
     ]
   }
 
@@ -927,9 +909,6 @@ dimension: first_session_or_returning_session {
     description: "whether the session is first session or not"
     sql: ${domain_sessionidx} = 1 ;;
     }
-
-
-
 
 
   # Measure

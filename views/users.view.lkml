@@ -1,5 +1,5 @@
 view: users {
-  label: "@{users_view}"
+  label: "Users"
   sql_table_name: derived.users ;;
   drill_fields: [network_userid]
 
@@ -23,7 +23,9 @@ view: users {
     sql: ${TABLE}.domain_userid ;;
   }
 
+
 # Engaged Time
+
   dimension_group: end_tstamp {
     label: "end_tstamp"
     description: "Timestamp for the last time the user was seen, based on derived_tstamp"
@@ -170,6 +172,7 @@ view: users {
 
 
 # Marketing
+
   dimension: mkt_campaign {
     label: "mkt_campaign"
     description: "The campaign ID e.g. ‘diageo-123’"
@@ -236,7 +239,6 @@ view: users {
     type: number
     sql: ${TABLE}.page_views ;;
   }
-
 
 
 # Referrer
@@ -357,6 +359,5 @@ view: users {
     group_label: "Count"
     sql: ${domain_userid} ;;
   }
-
 
 }
