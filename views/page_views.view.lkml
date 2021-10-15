@@ -508,6 +508,7 @@ view: page_views {
     sql: ${TABLE}.mkt_term ;;
   }
 
+
   dimension: network_userid {
     label: "network_userid"
     description: "User ID set by Snowplow using 3rd party cookie e.g. ‘ecdff4d0-9175-40ac-a8bb-325c49733607’"
@@ -1274,4 +1275,5 @@ view: page_views {
     type: count_distinct
     sql: ${page_view_id} ;;
   }
+
 }

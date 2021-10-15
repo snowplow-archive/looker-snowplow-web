@@ -359,4 +359,5 @@ view: users {
     group_label: "Count"
     sql: ${domain_userid} ;;
   }
+
 }
