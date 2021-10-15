@@ -1,19 +1,19 @@
 connection: "snowplow_snplow5"
+# connection: "<YOUR_CONNECTION>"
 
 label: "Snowplow Looker Model"
 
-# include all the views
 include: "/views/**/*.view"
+include: "/dashboards/*.dashboard.lookml"
 
-datagroup: snowplow-looker_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+datagroup: snowplow_looker_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-persist_with: snowplow-looker_default_datagroup
+persist_with: snowplow_looker_default_datagroup
 
 explore: sessions {
-  label: "@{sessions_explore}"
+  label: "Sessions"
   join: users {
     type: left_outer
     sql_on: ${sessions.domain_userid} = ${users.domain_userid} ;;
@@ -22,7 +22,7 @@ explore: sessions {
 }
 
 explore: page_views {
-  label: "@{page_views_explore}"
+  label: "Page Views"
   join: sessions {
     type:  left_outer
     relationship: many_to_one
@@ -38,5 +38,5 @@ explore: page_views {
 }
 
 explore: users  {
-  label: "@{users_explore}"
+  label: "Users"
 }

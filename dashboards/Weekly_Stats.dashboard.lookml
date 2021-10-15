@@ -1,17 +1,17 @@
-- dashboard: quarterly_stats
-  title: Quarterly Stats
+- dashboard: weekly_stats
+  title: Weekly Stats
   layout: newspaper
   preferred_viewer: dashboards-next
   elements:
-  - title: Session Bounced Comparison - Quarterly
-    name: Session Bounced Comparison - Quarterly
-    model: snowplow-looker
+  - title: Session Bounced Comparison - Weekly
+    name: Session Bounced Comparison - Weekly
+    model: snowplow_looker
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.user_bounced]
     fill_fields: [sessions.user_bounced]
     filters:
-      sessions.start_tstamp_month: 3 months
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.session_count desc]
     limit: 500
     column_limit: 50
@@ -56,16 +56,16 @@
     col: 0
     width: 8
     height: 6
-  - title: Daily Session by New Visitors - Quarterly
-    name: Daily Session by New Visitors - Quarterly
-    model: snowplow-looker
+  - title: Daily Session by New Visitors - Weekly
+    name: Daily Session by New Visitors - Weekly
+    model: snowplow_looker
     explore: sessions
     type: looker_area
     fields: [sessions.start_tstamp_date, sessions.session_count, sessions.first_session]
     pivots: [sessions.first_session]
     fill_fields: [sessions.start_tstamp_date, sessions.first_session]
     filters:
-      sessions.start_tstamp_month: 3 months
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.start_tstamp_date desc, sessions.first_session]
     limit: 500
     column_limit: 50
@@ -104,19 +104,39 @@
     series_types: {}
     series_colors: {}
     defaults_version: 1
+    map_plot_mode: points
+    heatmap_gridlines: false
+    heatmap_gridlines_empty: false
+    heatmap_opacity: 0.5
+    show_region_field: true
+    draw_map_labels_above_data: true
+    map_tile_provider: light
+    map_position: fit_data
+    map_scale_indicator: 'off'
+    map_pannable: true
+    map_zoomable: true
+    map_marker_type: circle
+    map_marker_icon_name: default
+    map_marker_radius_mode: proportional_value
+    map_marker_units: meters
+    map_marker_proportional_scale_type: linear
+    map_marker_color_mode: fixed
+    show_legend: true
+    quantize_map_value_colors: false
+    reverse_map_value_colors: false
     row: 24
     col: 0
     width: 24
-    height: 11
-  - title: Engaged User Count - Quarterly
-    name: Engaged User Count - Quarterly
-    model: snowplow-looker
+    height: 9
+  - title: Engaged User Count - Weekly
+    name: Engaged User Count - Weekly
+    model: snowplow_looker
     explore: page_views
     type: looker_pie
     fields: [page_views.user_count, page_views.user_engaged]
     fill_fields: [page_views.user_engaged]
     filters:
-      page_views.start_tstamp_month: 3 months
+      page_views.start_tstamp_date: 7 days
     sorts: [page_views.user_count desc]
     limit: 500
     column_limit: 50
@@ -155,15 +175,15 @@
     col: 0
     width: 8
     height: 6
-  - title: Firs/Returning Session - Quarterly
-    name: Firs/Returning Session - Quarterly
-    model: snowplow-looker
+  - title: First/Returning Session - Weekly
+    name: First/Returning Session - Weekly
+    model: snowplow_looker
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.first_session_or_returning_session]
     fill_fields: [sessions.first_session_or_returning_session]
     filters:
-      sessions.start_tstamp_month: 3 months
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.session_count desc]
     limit: 500
     column_limit: 50
@@ -199,15 +219,15 @@
     col: 8
     width: 8
     height: 6
-  - title: New User Count - Quarterly
-    name: New User Count - Quarterly
-    model: snowplow-looker
+  - title: New User Count - Weekly
+    name: New User Count - Weekly
+    model: snowplow_looker
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count]
     fill_fields: [page_views.start_tstamp_date]
     filters:
-      page_views.start_tstamp_month: 3 months
+      page_views.start_tstamp_date: 7 days
     sorts: [page_views.start_tstamp_date desc]
     limit: 500
     query_timezone: Australia/Melbourne
@@ -283,19 +303,19 @@
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    row: 35
+    row: 33
     col: 0
     width: 24
-    height: 11
-  - title: New vs Old Users Sessions - Quarterly
-    name: New vs Old Users Sessions - Quarterly
-    model: snowplow-looker
+    height: 8
+  - title: New vs Old Users Sessions - Weekly
+    name: New vs Old Users Sessions - Weekly
+    model: snowplow_looker
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.new_user]
     fill_fields: [sessions.new_user]
     filters:
-      sessions.start_tstamp_month: 3 months
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.session_count desc]
     limit: 500
     column_limit: 50
@@ -340,14 +360,14 @@
     col: 16
     width: 8
     height: 6
-  - title: New/Old User - Quarterly
-    name: New/Old User - Quarterly
-    model: snowplow-looker
+  - title: New/Old User - Weekly
+    name: New/Old User - Weekly
+    model: snowplow_looker
     explore: page_views
     type: looker_grid
     fields: [page_views.new_user_count, page_views.returned_user_count]
     filters:
-      page_views.start_tstamp_month: 3 months
+      page_views.start_tstamp_date: 7 days
     sorts: [page_views.new_user_count desc]
     limit: 50
     query_timezone: Australia/Melbourne
@@ -427,15 +447,15 @@
     col: 0
     width: 8
     height: 6
-  - title: New Vs Returned Users - Quarterly
-    name: New Vs Returned Users - Quarterly
-    model: snowplow-looker
+  - title: New Vs Returned Users - Weekly
+    name: New Vs Returned Users - Weekly
+    model: snowplow_looker
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count, page_views.returned_user_count]
     fill_fields: [page_views.start_tstamp_date]
     filters:
-      page_views.start_tstamp_month: 3 months
+      page_views.start_tstamp_date: 7 days
     sorts: [page_views.start_tstamp_date desc]
     limit: 500
     query_timezone: Australia/Melbourne
@@ -511,20 +531,20 @@
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    row: 46
+    row: 41
     col: 0
     width: 24
-    height: 11
-  - title: Session Bounced - Quarterly
-    name: Session Bounced - Quarterly
-    model: snowplow-looker
+    height: 9
+  - title: Session Bounced - Weekly
+    name: Session Bounced - Weekly
+    model: snowplow_looker
     explore: sessions
     type: looker_area
     fields: [sessions.user_bounced, sessions.session_count, sessions.start_tstamp_date]
     pivots: [sessions.user_bounced]
     fill_fields: [sessions.user_bounced, sessions.start_tstamp_date]
     filters:
-      sessions.start_tstamp_month: 3 months
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.user_bounced, sessions.start_tstamp_date desc]
     query_timezone: Australia/Melbourne
     x_axis_gridlines: false
@@ -564,18 +584,18 @@
     defaults_version: 1
     ordering: none
     show_null_labels: false
-    row: 57
+    row: 50
     col: 0
     width: 24
-    height: 11
-  - title: Total Session - Quarterly
-    name: Total Session - Quarterly
-    model: snowplow-looker
+    height: 9
+  - title: Total Session - Weekly
+    name: Total Session - Weekly
+    model: snowplow_looker
     explore: page_views
     type: single_value
     fields: [sessions.session_count]
     filters:
-      sessions.start_tstamp_month: 3 months
+      sessions.start_tstamp_date: 7 days
     limit: 500
     query_timezone: Australia/Melbourne
     custom_color_enabled: true
@@ -605,14 +625,14 @@
     col: 8
     width: 8
     height: 6
-  - title: Total User - Quarterly
-    name: Total User - Quarterly
-    model: snowplow-looker
+  - title: Total User - Weekly
+    name: Total User - Weekly
+    model: snowplow_looker
     explore: page_views
     type: looker_geo_coordinates
     fields: [sessions.geo_location, sessions.user_count]
     filters:
-      sessions.start_tstamp_month: 3 months
+      sessions.start_tstamp_date: 7 days
     sorts: [sessions.user_count desc]
     column_limit: 50
     map: world
@@ -647,18 +667,18 @@
     defaults_version: 1
     series_types: {}
     quantize_colors: false
-    row: 68
+    row: 59
     col: 0
     width: 24
-    height: 17
-  - title: Total User Numbers - Quarterly
-    name: Total User Numbers - Quarterly
-    model: snowplow-looker
+    height: 14
+  - title: Total User Numbers - Weekly
+    name: Total User Numbers - Weekly
+    model: snowplow_looker
     explore: page_views
     type: single_value
     fields: [users.user_count]
     filters:
-      page_views.start_tstamp_month: 3 months
+      page_views.start_tstamp_date: 7 days
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -675,15 +695,15 @@
     col: 16
     width: 8
     height: 6
-  - title: Engagement Score - Quarterly
-    name: Engagement Score - Quarterly
-    model: snowplow-looker
+  - title: Engagement Score - Weekly
+    name: Engagement Score - Weekly
+    model: snowplow_looker
     explore: page_views
     type: looker_grid
     fields: [page_views.engagement_type, page_views.user_count]
     pivots: [page_views.engagement_type]
     filters:
-      page_views.start_tstamp_month: 3 months
+      page_views.start_tstamp_date: 7 days
     sorts: [page_views.engagement_type]
     limit: 500
     query_timezone: Australia/Melbourne
@@ -707,16 +727,16 @@
     col: 8
     width: 8
     height: 6
-  - title: Traffic Numbers - Quarterly
-    name: Traffic Numbers - Quarterly
-    model: snowplow-looker
+  - title: Traffic Numbers - Weekly
+    name: Traffic Numbers - Weekly
+    model: snowplow_looker
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
       page_views.total_email_traffic, page_views.total_organic_traffic, page_views.total_paid_traffic,
       page_views.total_social_traffic]
     filters:
-      page_views.start_tstamp_month: 3 months
+      page_views.start_tstamp_date: 7 days
     limit: 500
     column_limit: 50
     show_view_names: false
@@ -739,17 +759,17 @@
     col: 0
     width: 8
     height: 6
-  - title: New Users Traffic - Quarterly
-    name: New Users Traffic - Quarterly
-    model: snowplow-looker
+  - title: New Users Traffic - Weekly
+    name: New Users Traffic - Weekly
+    model: snowplow_looker
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
       page_views.total_email_traffic, page_views.total_organic_traffic, page_views.total_paid_traffic,
       page_views.total_social_traffic]
     filters:
+      page_views.start_tstamp_date: 7 days
       page_views.domain_sessionidx: '1'
-      page_views.start_tstamp_month: 3 months
     limit: 500
     column_limit: 50
     show_view_names: false
@@ -768,22 +788,21 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    listen: {}
     row: 18
     col: 8
     width: 8
     height: 6
-  - title: Returning Users Traffic - Quarterly
-    name: Returning Users Traffic - Quarterly
-    model: snowplow-looker
+  - title: Returning Users Traffic - Weekly
+    name: Returning Users Traffic - Weekly
+    model: snowplow_looker
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
       page_views.total_email_traffic, page_views.total_organic_traffic, page_views.total_paid_traffic,
       page_views.total_social_traffic]
     filters:
+      page_views.start_tstamp_date: 7 days
       page_views.domain_sessionidx: ">1"
-      page_views.start_tstamp_month: 3 months
     limit: 500
     column_limit: 50
     show_view_names: false

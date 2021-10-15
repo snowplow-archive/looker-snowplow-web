@@ -1,5 +1,5 @@
 view: page_views {
-  label: "@{page_views_view}"
+  label: "Page Views"
   sql_table_name: derived.page_views ;;
   drill_fields: [page_view_id]
 
@@ -253,7 +253,6 @@ view: page_views {
   }
 
 
-
 # User
   dimension: domain_userid {
     label: "domain_userid"
@@ -308,7 +307,6 @@ view: page_views {
   }
 
 
-
 # Event
   dimension: event_id {
     label: "event_id"
@@ -317,7 +315,6 @@ view: page_views {
     type: string
     sql: ${TABLE}.event_id ;;
   }
-
 
 
 # Geographical
@@ -404,7 +401,6 @@ view: page_views {
   }
 
 
-
 # Layout
   dimension: layout_engine_class {
     label: "layout_engine_class"
@@ -453,7 +449,6 @@ view: page_views {
     type: string
     sql: ${TABLE}.layout_engine_version_major ;;
   }
-
 
 
 # Marketing
@@ -513,8 +508,6 @@ view: page_views {
     sql: ${TABLE}.mkt_term ;;
   }
 
-
-
   dimension: network_userid {
     label: "network_userid"
     description: "User ID set by Snowplow using 3rd party cookie e.g. ‘ecdff4d0-9175-40ac-a8bb-325c49733607’"
@@ -522,7 +515,6 @@ view: page_views {
     type: string
     sql: ${TABLE}.network_userid ;;
   }
-
 
 
 # OS
@@ -715,7 +707,6 @@ view: page_views {
     type: string
     sql: ${TABLE}.reason ;;
   }
-
 
 
 # Referrer
@@ -980,14 +971,14 @@ view: page_views {
     type: string
     description: "Type of traffic"
     sql:
-        CASE WHEN (${refr_medium} = null and ${page_url} not like '%utm_%') THEN 'Direct Search'
-             WHEN ((${refr_medium} = 'search' and ${mkt_medium} is null) OR (${refr_medium} = 'search' and ${mkt_medium} = 'organic')) THEN 'Organic Search'
-             WHEN (${refr_medium} = 'search' and  ${mkt_medium} like '%(cpc|ppc|paidsearch)%') THEN 'Paid Search'
-             WHEN (${refr_medium} = 'social' or ${mkt_medium} like '%(social|social-network|social-media|sm|social network|social media)%') THEN 'Social'
-             WHEN (${refr_medium} = 'email' or ${mkt_medium} like 'email') THEN 'Email'
-             WHEN (${mkt_medium} like '%(display|cpm|banner)%') THEN 'Display'
-             WHEN (${mkt_medium} like '%(cpv|cpa|cpp|content-text|advertising|ads)%') THEN 'Advertising'
-             ELSE NULL
+        CASE WHEN ${refr_medium} IS NULL AND ${page_url} NOT LIKE '%utm_%' THEN 'Direct Search'
+             WHEN ((LOWER(${refr_medium}) = 'search' and ${mkt_medium} IS NULL) OR (LOWER(${refr_medium}) = 'search' AND LOWER(${mkt_medium}) = 'organic')) THEN 'Organic Search'
+             WHEN LOWER(${refr_medium}) = 'search' AND  LOWER(${mkt_medium}) LIKE '%(cpc|ppc|paidsearch)%' THEN 'Paid Search'
+             WHEN LOWER(${refr_medium}) = 'social' OR LOWER(${mkt_medium}) LIKE '%(social|social-network|social-media|sm|social network|social media)%') THEN 'Social'
+             WHEN LOWER(${refr_medium}) = 'email' or LOWER(${mkt_medium}) LIKE 'email' THEN 'Email'
+             WHEN LOWER(${mkt_medium}) LIKE '%(display|cpm|banner)%' THEN 'Display'
+             WHEN LOWER(${mkt_medium}) LIKE '%(cpv|cpa|cpp|content-text|advertising|ads)%' THEN 'Advertising'
+             ELSE 'Other'
              END
     ;;
   }
@@ -1100,8 +1091,6 @@ view: page_views {
     ]
     group_label: "Count"
   }
-
-
 
   measure: average_time_spent_per_session {
     label: "average_time_spent_per_session"
@@ -1285,6 +1274,4 @@ view: page_views {
     type: count_distinct
     sql: ${page_view_id} ;;
   }
-
-
 }

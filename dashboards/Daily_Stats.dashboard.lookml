@@ -1,17 +1,17 @@
-- dashboard: yearly_stats
-  title: Yearly Stats
+- dashboard: daily_stats
+  title: Daily Stats
   layout: newspaper
   preferred_viewer: dashboards-next
   elements:
-  - title: Session Bounced Comparison - Yearly
-    name: Session Bounced Comparison - Yearly
-    model: snowplow-looker
+  - title: Session Bounced Comparison - Daily
+    name: Session Bounced Comparison - Daily
+    model: snowplow_looker
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.user_bounced]
     fill_fields: [sessions.user_bounced]
     filters:
-      sessions.start_tstamp_year: '2021'
+      sessions.start_tstamp_date: 1 days
     sorts: [sessions.session_count desc]
     limit: 500
     column_limit: 50
@@ -56,16 +56,16 @@
     col: 0
     width: 8
     height: 6
-  - title: Daily Session by New Visitors - Yearly
-    name: Daily Session by New Visitors - Yearly
-    model: snowplow-looker
+  - title: Daily Session by New Visitors - Daily
+    name: Daily Session by New Visitors - Daily
+    model: snowplow_looker
     explore: sessions
     type: looker_area
     fields: [sessions.start_tstamp_date, sessions.session_count, sessions.first_session]
     pivots: [sessions.first_session]
     fill_fields: [sessions.start_tstamp_date, sessions.first_session]
     filters:
-      sessions.start_tstamp_year: '2021'
+      sessions.start_tstamp_date: 1 days
     sorts: [sessions.start_tstamp_date desc, sessions.first_session]
     limit: 500
     column_limit: 50
@@ -104,19 +104,39 @@
     series_types: {}
     series_colors: {}
     defaults_version: 1
-    row: 24
+    map_plot_mode: points
+    heatmap_gridlines: false
+    heatmap_gridlines_empty: false
+    heatmap_opacity: 0.5
+    show_region_field: true
+    draw_map_labels_above_data: true
+    map_tile_provider: light
+    map_position: fit_data
+    map_scale_indicator: 'off'
+    map_pannable: true
+    map_zoomable: true
+    map_marker_type: circle
+    map_marker_icon_name: default
+    map_marker_radius_mode: proportional_value
+    map_marker_units: meters
+    map_marker_proportional_scale_type: linear
+    map_marker_color_mode: fixed
+    show_legend: true
+    quantize_map_value_colors: false
+    reverse_map_value_colors: false
+    row: 6
     col: 0
-    width: 24
-    height: 10
-  - title: Engaged User Count - Yearly
-    name: Engaged User Count - Yearly
-    model: snowplow-looker
+    width: 8
+    height: 6
+  - title: Engaged User Count - Daily
+    name: Engaged User Count - Daily
+    model: snowplow_looker
     explore: page_views
     type: looker_pie
     fields: [page_views.user_count, page_views.user_engaged]
     fill_fields: [page_views.user_engaged]
     filters:
-      page_views.start_tstamp_year: '2021'
+      page_views.start_tstamp_date: 1 days
     sorts: [page_views.user_count desc]
     limit: 500
     column_limit: 50
@@ -152,18 +172,18 @@
     defaults_version: 1
     series_types: {}
     row: 6
-    col: 0
+    col: 8
     width: 8
     height: 6
-  - title: Firs/Returning Session - Yearly
-    name: Firs/Returning Session - Yearly
-    model: snowplow-looker
+  - title: First/Returning Session - Daily
+    name: First/Returning Session - Daily
+    model: snowplow_looker
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.first_session_or_returning_session]
     fill_fields: [sessions.first_session_or_returning_session]
     filters:
-      sessions.start_tstamp_year: '2021'
+      sessions.start_tstamp_date: 1 days
     sorts: [sessions.session_count desc]
     limit: 500
     column_limit: 50
@@ -196,18 +216,18 @@
     defaults_version: 1
     series_types: {}
     row: 6
-    col: 8
+    col: 16
     width: 8
     height: 6
-  - title: New User Count - Yearly
-    name: New User Count - Yearly
-    model: snowplow-looker
+  - title: New User Count - Daily
+    name: New User Count - Daily
+    model: snowplow_looker
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count]
     fill_fields: [page_views.start_tstamp_date]
     filters:
-      page_views.start_tstamp_year: '2021'
+      page_views.start_tstamp_date: 1 days
     sorts: [page_views.start_tstamp_date desc]
     limit: 500
     query_timezone: Australia/Melbourne
@@ -283,19 +303,19 @@
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    row: 34
+    row: 12
     col: 0
-    width: 24
-    height: 8
-  - title: New vs Old Users Sessions - Yearly
-    name: New vs Old Users Sessions - Yearly
-    model: snowplow-looker
+    width: 8
+    height: 6
+  - title: New vs Old Users Sessions - Daily
+    name: New vs Old Users Sessions - Daily
+    model: snowplow_looker
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.new_user]
     fill_fields: [sessions.new_user]
     filters:
-      sessions.start_tstamp_year: '2021'
+      sessions.start_tstamp_date: 1 days
     sorts: [sessions.session_count desc]
     limit: 500
     column_limit: 50
@@ -336,18 +356,18 @@
     totals_color: "#808080"
     defaults_version: 1
     series_types: {}
-    row: 6
-    col: 16
+    row: 12
+    col: 8
     width: 8
     height: 6
-  - title: New/Old User - Yearly
-    name: New/Old User - Yearly
-    model: snowplow-looker
+  - title: New/Old User - Daily
+    name: New/Old User - Daily
+    model: snowplow_looker
     explore: page_views
     type: looker_grid
     fields: [page_views.new_user_count, page_views.returned_user_count]
     filters:
-      page_views.start_tstamp_year: '2021'
+      page_views.start_tstamp_date: 1 days
     sorts: [page_views.new_user_count desc]
     limit: 50
     query_timezone: Australia/Melbourne
@@ -423,19 +443,19 @@
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    row: 12
+    row: 18
     col: 0
     width: 8
     height: 6
-  - title: New Vs Returned Users - Yearly
-    name: New Vs Returned Users - Yearly
-    model: snowplow-looker
+  - title: New Vs Returned Users - Daily
+    name: New Vs Returned Users - Daily
+    model: snowplow_looker
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count, page_views.returned_user_count]
     fill_fields: [page_views.start_tstamp_date]
     filters:
-      page_views.start_tstamp_year: '2021'
+      page_views.start_tstamp_date: 1 days
     sorts: [page_views.start_tstamp_date desc]
     limit: 500
     query_timezone: Australia/Melbourne
@@ -511,20 +531,20 @@
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    row: 42
-    col: 0
-    width: 24
-    height: 8
-  - title: Session Bounced - Yearly
-    name: Session Bounced - Yearly
-    model: snowplow-looker
+    row: 18
+    col: 8
+    width: 8
+    height: 6
+  - title: Session Bounced - Daily
+    name: Session Bounced - Daily
+    model: snowplow_looker
     explore: sessions
     type: looker_area
     fields: [sessions.user_bounced, sessions.session_count, sessions.start_tstamp_date]
     pivots: [sessions.user_bounced]
     fill_fields: [sessions.user_bounced, sessions.start_tstamp_date]
     filters:
-      sessions.start_tstamp_year: '2021'
+      sessions.start_tstamp_date: 1 days
     sorts: [sessions.user_bounced, sessions.start_tstamp_date desc]
     query_timezone: Australia/Melbourne
     x_axis_gridlines: false
@@ -564,18 +584,18 @@
     defaults_version: 1
     ordering: none
     show_null_labels: false
-    row: 50
-    col: 0
-    width: 24
-    height: 10
-  - title: Total Session - Yearly
-    name: Total Session - Yearly
-    model: snowplow-looker
+    row: 12
+    col: 16
+    width: 8
+    height: 6
+  - title: Total Session - Daily
+    name: Total Session - Daily
+    model: snowplow_looker
     explore: page_views
     type: single_value
     fields: [sessions.session_count]
     filters:
-      sessions.start_tstamp_year: '2021'
+      sessions.start_tstamp_date: 1 days
     limit: 500
     query_timezone: Australia/Melbourne
     custom_color_enabled: true
@@ -605,14 +625,14 @@
     col: 8
     width: 8
     height: 6
-  - title: Total User - Yearly
-    name: Total User - Yearly
-    model: snowplow-looker
+  - title: Total User - Daily
+    name: Total User - Daily
+    model: snowplow_looker
     explore: page_views
     type: looker_geo_coordinates
     fields: [sessions.geo_location, sessions.user_count]
     filters:
-      sessions.start_tstamp_year: '2021'
+      sessions.start_tstamp_date: 1 days
     sorts: [sessions.user_count desc]
     column_limit: 50
     map: world
@@ -647,18 +667,18 @@
     defaults_version: 1
     series_types: {}
     quantize_colors: false
-    row: 60
+    row: 30
     col: 0
     width: 24
     height: 14
-  - title: Total User - Yearly
-    name: Total User - Yearly (2)
-    model: snowplow-looker
+  - title: Total User  Numbers - Daily
+    name: Total User  Numbers - Daily
+    model: snowplow_looker
     explore: page_views
     type: single_value
     fields: [users.user_count]
     filters:
-      page_views.start_tstamp_year: '2021'
+      page_views.start_tstamp_date: 1 days
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -697,15 +717,15 @@
     col: 16
     width: 8
     height: 6
-  - title: Engagement Score - Yearly
-    name: Engagement Score - Yearly
-    model: snowplow-looker
+  - title: Engagement Score - Daily
+    name: Engagement Score - Daily
+    model: snowplow_looker
     explore: page_views
     type: looker_grid
     fields: [page_views.engagement_type, page_views.user_count]
     pivots: [page_views.engagement_type]
     filters:
-      page_views.start_tstamp_year: '2021'
+      page_views.start_tstamp_date: 1 days
     sorts: [page_views.engagement_type]
     limit: 500
     query_timezone: Australia/Melbourne
@@ -725,20 +745,20 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    row: 12
-    col: 8
+    row: 18
+    col: 16
     width: 8
     height: 6
-  - title: Traffic Numbers - Yearly
-    name: Traffic Numbers - Yearly
-    model: snowplow-looker
+  - title: Traffic Numbers - Daily
+    name: Traffic Numbers - Daily
+    model: snowplow_looker
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
       page_views.total_email_traffic, page_views.total_organic_traffic, page_views.total_paid_traffic,
       page_views.total_social_traffic]
     filters:
-      page_views.start_tstamp_year: '2021'
+      page_views.start_tstamp_date: 1 days
     limit: 500
     column_limit: 50
     show_view_names: false
@@ -757,21 +777,21 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    row: 18
+    row: 24
     col: 0
     width: 8
     height: 6
-  - title: New Users Traffic - Yearly
-    name: New Users Traffic - Yearly
-    model: snowplow-looker
+  - title: New Users Traffic - Daily
+    name: New Users Traffic - Daily
+    model: snowplow_looker
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
       page_views.total_email_traffic, page_views.total_organic_traffic, page_views.total_paid_traffic,
       page_views.total_social_traffic]
     filters:
+      page_views.start_tstamp_date: 1 days
       page_views.domain_sessionidx: '1'
-      page_views.start_tstamp_year: '2021'
     limit: 500
     column_limit: 50
     show_view_names: false
@@ -790,21 +810,21 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    row: 18
+    row: 24
     col: 8
     width: 8
     height: 6
-  - title: Returning Users Traffic - Yearly
-    name: Returning Users Traffic - Yearly
-    model: snowplow-looker
+  - title: Returning Users Traffic - Daily
+    name: Returning Users Traffic - Daily
+    model: snowplow_looker
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
       page_views.total_email_traffic, page_views.total_organic_traffic, page_views.total_paid_traffic,
       page_views.total_social_traffic]
     filters:
+      page_views.start_tstamp_date: 1 days
       page_views.domain_sessionidx: ">1"
-      page_views.start_tstamp_year: '2021'
     limit: 500
     column_limit: 50
     show_view_names: false
@@ -823,7 +843,7 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    row: 12
+    row: 24
     col: 16
     width: 8
     height: 6
