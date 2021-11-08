@@ -1,6 +1,9 @@
-[![maintained]][tracker-classificiation][![License][license-image]][license][![Discourse posts][discourse-image]][discourse]
-
 # looker-snowplow-web
+
+[![maintained]][tracker-classification]
+[![Release][release-image]][release]
+[![License][license-image]][license]
+[![Discourse posts][discourse-image]][discourse]
 
 This LookML block makes the derived tables produced by the [Snowplow Web V1 model][snowplow-web-v1-docs] available for exploration in Looker.
 
@@ -141,7 +144,7 @@ include: "//snowplow_block/dashboards/*.lookml"
 
 For more information on setting up Looker blocks please refer to the [Looker docs][looker-block-docs].
 
-# Join the Snowplow community
+## Join the Snowplow community
 
 We welcome all ideas, questions and contributions!
 
@@ -149,7 +152,7 @@ For support requests, please use our community support [Discourse][discourse] fo
 
 If you find a bug, please report an issue on GitHub.
 
-# Copyright and license
+## Copyright and license
 
 The looker-snowplow-web block is Copyright 2021 Snowplow Analytics Ltd.
 
@@ -162,13 +165,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-
-[tracker-classificiation]: https://github.com/snowplow/snowplow/wiki/Tracker-Maintenance-Classification
+[tracker-classification]: https://github.com/snowplow/snowplow/wiki/Tracker-Maintenance-Classification
 [maintained]: https://img.shields.io/static/v1?style=flat&label=Snowplow&message=Maintained&color=9e62dd&labelColor=9ba0aa&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAeFBMVEVMaXGXANeYANeXANZbAJmXANeUANSQAM+XANeMAMpaAJhZAJeZANiXANaXANaOAM2WANVnAKWXANZ9ALtmAKVaAJmXANZaAJlXAJZdAJxaAJlZAJdbAJlbAJmQAM+UANKZANhhAJ+EAL+BAL9oAKZnAKVjAKF1ALNBd8J1AAAAKHRSTlMAa1hWXyteBTQJIEwRgUh2JjJon21wcBgNfmc+JlOBQjwezWF2l5dXzkW3/wAAAHpJREFUeNokhQOCA1EAxTL85hi7dXv/E5YPCYBq5DeN4pcqV1XbtW/xTVMIMAZE0cBHEaZhBmIQwCFofeprPUHqjmD/+7peztd62dWQRkvrQayXkn01f/gWp2CrxfjY7rcZ5V7DEMDQgmEozFpZqLUYDsNwOqbnMLwPAJEwCopZxKttAAAAAElFTkSuQmCC 
-[license]: http://www.apache.org/licenses/LICENSE-2.0
-[license-image]: http://img.shields.io/badge/license-Apache--2-blue.svg?style=flat
+[license]: https://www.apache.org/licenses/LICENSE-2.0
+[license-image]: https://img.shields.io/badge/license-Apache--2-blue.svg?style=flat
+[release]: https://github.com/snowplow/looker-snowplow-web/releases
+[release-image]: https://img.shields.io/github/v/release/snowplow/looker-snowplow-web
 [snowplow-web-v1-docs]: https://docs.snowplowanalytics.com/docs/modeling-your-data/the-snowplow-web-data-model/
 [discourse-image]: https://img.shields.io/discourse/posts?server=https%3A%2F%2Fdiscourse.snowplowanalytics.com%2F
-[discourse]: http://discourse.snowplowanalytics.com/
+[discourse]: https://discourse.snowplowanalytics.com/
 [looker-block-docs]: https://docs.looker.com/data-modeling/looker-blocks
 [looker-datagroup-docs]: https://docs.looker.com/reference/model-params/datagroup
