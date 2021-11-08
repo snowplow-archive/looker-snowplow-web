@@ -1,6 +1,6 @@
 view: users {
   label: "Users"
-  sql_table_name: derived.users ;;
+  sql_table_name: @{schema}.@{users_table} ;;
   drill_fields: [network_userid]
 
 

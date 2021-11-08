@@ -5,7 +5,7 @@
   elements:
   - title: Session Bounced Comparison - Weekly
     name: Session Bounced Comparison - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.user_bounced]
@@ -58,7 +58,7 @@
     height: 6
   - title: Daily Session by New Visitors - Weekly
     name: Daily Session by New Visitors - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_area
     fields: [sessions.start_tstamp_date, sessions.session_count, sessions.first_session]
@@ -130,7 +130,7 @@
     height: 9
   - title: Engaged User Count - Weekly
     name: Engaged User Count - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_pie
     fields: [page_views.user_count, page_views.user_engaged]
@@ -177,7 +177,7 @@
     height: 6
   - title: First/Returning Session - Weekly
     name: First/Returning Session - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.first_session_or_returning_session]
@@ -221,7 +221,7 @@
     height: 6
   - title: New User Count - Weekly
     name: New User Count - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count]
@@ -309,7 +309,7 @@
     height: 8
   - title: New vs Old Users Sessions - Weekly
     name: New vs Old Users Sessions - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.new_user]
@@ -362,7 +362,7 @@
     height: 6
   - title: New/Old User - Weekly
     name: New/Old User - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.new_user_count, page_views.returned_user_count]
@@ -449,7 +449,7 @@
     height: 6
   - title: New Vs Returned Users - Weekly
     name: New Vs Returned Users - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count, page_views.returned_user_count]
@@ -537,7 +537,7 @@
     height: 9
   - title: Session Bounced - Weekly
     name: Session Bounced - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_area
     fields: [sessions.user_bounced, sessions.session_count, sessions.start_tstamp_date]
@@ -590,7 +590,7 @@
     height: 9
   - title: Total Session - Weekly
     name: Total Session - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: single_value
     fields: [sessions.session_count]
@@ -627,7 +627,7 @@
     height: 6
   - title: Total User - Weekly
     name: Total User - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_geo_coordinates
     fields: [sessions.geo_location, sessions.user_count]
@@ -673,7 +673,7 @@
     height: 14
   - title: Total User Numbers - Weekly
     name: Total User Numbers - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: single_value
     fields: [users.user_count]
@@ -697,7 +697,7 @@
     height: 6
   - title: Engagement Score - Weekly
     name: Engagement Score - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.engagement_type, page_views.user_count]
@@ -729,7 +729,7 @@
     height: 6
   - title: Traffic Numbers - Weekly
     name: Traffic Numbers - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
@@ -761,7 +761,7 @@
     height: 6
   - title: New Users Traffic - Weekly
     name: New Users Traffic - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
@@ -794,7 +794,7 @@
     height: 6
   - title: Returning Users Traffic - Weekly
     name: Returning Users Traffic - Weekly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,

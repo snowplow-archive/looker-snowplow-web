@@ -1,6 +1,6 @@
 view: page_views {
   label: "Page Views"
-  sql_table_name: derived.page_views ;;
+  sql_table_name: @{schema}.@{page_views_table} ;;
   drill_fields: [page_view_id]
 
 

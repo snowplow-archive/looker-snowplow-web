@@ -14,18 +14,127 @@ A series of dashboards have also been included to help visualize the data.
 
 ## Set Up
 
+There are two ways to use this block. Either as a fork of this repository and as a `local_dependency`, or by including it as a `remote_dependency`.
+
+Forking this repository will allow you to customize this block beyond the available configurable properties in the `manifest.lkml`. Including this as a `remote_dependency` means you can use the block as-is and benefit from any future updates we publish directly in Looker without having to update your fork.
+
+### Using a fork
+
 - Fork this repository.
-- Update the `connection` variable in the [snowplow_looker model file](./models/snowplow_looker.model.lkml) to the database connection where your Snowplow data lives.
 - Create a new project within your Looker instance, `snowplow_web_looker_block` for example. Select `Clone Public Git Repository` as your starting point and enter the URL of your forked repository.
-- Verify that the table and schema names, defined by `sql_table_name`, in each of the views files aligns with the table names in your database. If you are using the `snowlow-web` dbt package you will most likely need to update these.
-- Within your main Looker project's manifest file, add the looker project containing the Snowplow Looker Block as local dependency:
+- Within your main Looker project's manifest file, you can add the looker project containing the Snowplow Looker Block as local dependency.
+- Overwrite the `connection` constant in the [manifest file](./manifest.lkml) to the database connection where your Snowplow data lives.
 
 ```YML
 project_name: "<your_project_name>"
 
 local_dependency: {
-  project: "<project_name_containing_snowplow_block>" # e.g. snowplow_web_looker_block
+  project: "<project_name_containing_snowplow_block>" 
+  override_constant: connection {
+    value: "<your_connection_name>"
+  }
 }
+```
+
+- Verify that the table and schema names, defined in the [manifest file](./manifest.lkml), aligns with the table names in your database. If you are using the `snowlow-web` dbt package you will most likely need to update these. Overwrite these if that is not the case.
+
+```YML
+project_name: "<your_project_name>"
+
+local_dependency: {
+  project: "<project_name_containing_snowplow_block>" 
+  override_constant: connection {
+    value: "<your_connection_name>"
+  }
+  override_constant: schema {
+    value: "derived"
+  }
+  override_constant: page_views_table {
+    value: "page_views"
+  }
+  override_constant: sessions_table {
+    value: "sessions"
+  }
+  override_constant: users_table {
+    value: "users"
+  }
+}
+```
+
+- You can then reference the views and dashboards in your model by including the files from the local dependency:
+
+```YML
+connection: "<your_connection_name>"
+
+include: "//snowplow_block/views/*.view.lkml"
+include: "//snowplow_block/dashboards/*.lookml"
+```
+
+- The LookML dashboards assume a model name of `snowplow_looker`. If your model name is different your should override the `model_name` constant.
+
+```YML
+  override_constant: model_name {
+    value: "<my_model_name>"
+  }
+```
+
+- Depending on how frequently you run the Snowplow Web V1 model, or how often you want to refresh the data in Looker, you may want to adjust the `datagroup` parameter within the model file. Please refer to Looker's doc on [datagroups][looker-datagroup-docs] for more information.
+
+### Using as a remote_dependency
+
+- Include this repository as a remote dependency in a new or existing project within your Looker instance.
+- Overwrite the `connection` constant in the [manifest file](./manifest.lkml) to the database connection where your Snowplow data lives.
+
+```YML
+project_name: "<your_project_name>"
+
+remote_dependency: snowplow_block {
+  url: "https://github.com/snowplow/looker-snowplow-web"
+  ref: "master"
+  override_constant: connection {
+    value: "<your_connection_name>"
+  }
+}
+```
+
+- Verify that the table and schema names, defined in the [manifest file](./manifest.lkml), aligns with the table names in your database. If you are using the `snowlow-web` dbt package you will most likely need to update these. Overwrite these if that is not the case.
+
+```YML
+remote_dependency: snowplow_block {
+  url: "https://github.com/snowplow/looker-snowplow-web"
+  override_constant: connection {
+    value: "<your_connection_name>"
+  }
+  override_constant: schema {
+    value: "derived"
+  }
+    override_constant: page_views_table {
+    value: "page_views"
+  }
+    override_constant: sessions_table {
+    value: "sessions"
+  }
+  override_constant: users_table {
+    value: "users"
+  }
+}
+```
+
+- You can then reference the views and dashboards in your model by including the files from the remote dependency:
+
+```YML
+connection: "your_connection_name"
+
+include: "//snowplow_block/views/*.view.lkml"
+include: "//snowplow_block/dashboards/*.lookml"
+```
+
+- The LookML dashboards assume a model name of `snowplow_looker`. If your model name is different your should override the `model_name` constant.
+
+```YML
+  override_constant: model_name {
+    value: "<my_model_name"
+  }
 ```
 
 - Depending on how frequently you run the Snowplow Web V1 model, or how often you want to refresh the data in Looker, you may want to adjust the `datagroup` parameter within the model file. Please refer to Looker's doc on [datagroups][looker-datagroup-docs] for more information.
