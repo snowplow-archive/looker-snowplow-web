@@ -5,7 +5,7 @@
   elements:
   - title: Session Bounced Comparison - Yearly
     name: Session Bounced Comparison - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.user_bounced]
@@ -58,7 +58,7 @@
     height: 6
   - title: Daily Session by New Visitors - Yearly
     name: Daily Session by New Visitors - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_area
     fields: [sessions.start_tstamp_date, sessions.session_count, sessions.first_session]
@@ -110,7 +110,7 @@
     height: 10
   - title: Engaged User Count - Yearly
     name: Engaged User Count - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_pie
     fields: [page_views.user_count, page_views.user_engaged]
@@ -157,7 +157,7 @@
     height: 6
   - title: First/Returning Session - Yearly
     name: First/Returning Session - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.first_session_or_returning_session]
@@ -201,7 +201,7 @@
     height: 6
   - title: New User Count - Yearly
     name: New User Count - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count]
@@ -289,7 +289,7 @@
     height: 8
   - title: New vs Old Users Sessions - Yearly
     name: New vs Old Users Sessions - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.new_user]
@@ -342,7 +342,7 @@
     height: 6
   - title: New/Old User - Yearly
     name: New/Old User - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.new_user_count, page_views.returned_user_count]
@@ -429,7 +429,7 @@
     height: 6
   - title: New Vs Returned Users - Yearly
     name: New Vs Returned Users - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count, page_views.returned_user_count]
@@ -517,7 +517,7 @@
     height: 8
   - title: Session Bounced - Yearly
     name: Session Bounced - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_area
     fields: [sessions.user_bounced, sessions.session_count, sessions.start_tstamp_date]
@@ -570,7 +570,7 @@
     height: 10
   - title: Total Session - Yearly
     name: Total Session - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: single_value
     fields: [sessions.session_count]
@@ -607,7 +607,7 @@
     height: 6
   - title: Total User - Yearly
     name: Total User - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_geo_coordinates
     fields: [sessions.geo_location, sessions.user_count]
@@ -653,7 +653,7 @@
     height: 14
   - title: Total User - Yearly
     name: Total User - Yearly (2)
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: single_value
     fields: [users.user_count]
@@ -699,7 +699,7 @@
     height: 6
   - title: Engagement Score - Yearly
     name: Engagement Score - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.engagement_type, page_views.user_count]
@@ -731,7 +731,7 @@
     height: 6
   - title: Traffic Numbers - Yearly
     name: Traffic Numbers - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
@@ -763,7 +763,7 @@
     height: 6
   - title: New Users Traffic - Yearly
     name: New Users Traffic - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
@@ -796,7 +796,7 @@
     height: 6
   - title: Returning Users Traffic - Yearly
     name: Returning Users Traffic - Yearly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,

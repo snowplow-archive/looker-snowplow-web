@@ -1,6 +1,6 @@
 view: sessions {
   label: "Sessions"
-  sql_table_name: derived.sessions ;;
+  sql_table_name: @{schema}.@{sessions_table} ;;
   drill_fields: [domain_sessionidx]
 
 

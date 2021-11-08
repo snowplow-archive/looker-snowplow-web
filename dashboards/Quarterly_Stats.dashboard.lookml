@@ -5,7 +5,7 @@
   elements:
   - title: Session Bounced Comparison - Quarterly
     name: Session Bounced Comparison - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.user_bounced]
@@ -58,7 +58,7 @@
     height: 6
   - title: Daily Session by New Visitors - Quarterly
     name: Daily Session by New Visitors - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_area
     fields: [sessions.start_tstamp_date, sessions.session_count, sessions.first_session]
@@ -110,7 +110,7 @@
     height: 11
   - title: Engaged User Count - Quarterly
     name: Engaged User Count - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_pie
     fields: [page_views.user_count, page_views.user_engaged]
@@ -157,7 +157,7 @@
     height: 6
   - title: First/Returning Session - Quarterly
     name: First/Returning Session - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.first_session_or_returning_session]
@@ -201,7 +201,7 @@
     height: 6
   - title: New User Count - Quarterly
     name: New User Count - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count]
@@ -289,7 +289,7 @@
     height: 11
   - title: New vs Old Users Sessions - Quarterly
     name: New vs Old Users Sessions - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_pie
     fields: [sessions.session_count, sessions.new_user]
@@ -342,7 +342,7 @@
     height: 6
   - title: New/Old User - Quarterly
     name: New/Old User - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.new_user_count, page_views.returned_user_count]
@@ -429,7 +429,7 @@
     height: 6
   - title: New Vs Returned Users - Quarterly
     name: New Vs Returned Users - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_column
     fields: [page_views.start_tstamp_date, page_views.new_user_count, page_views.returned_user_count]
@@ -517,7 +517,7 @@
     height: 11
   - title: Session Bounced - Quarterly
     name: Session Bounced - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: sessions
     type: looker_area
     fields: [sessions.user_bounced, sessions.session_count, sessions.start_tstamp_date]
@@ -570,7 +570,7 @@
     height: 11
   - title: Total Session - Quarterly
     name: Total Session - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: single_value
     fields: [sessions.session_count]
@@ -607,7 +607,7 @@
     height: 6
   - title: Total User - Quarterly
     name: Total User - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_geo_coordinates
     fields: [sessions.geo_location, sessions.user_count]
@@ -653,7 +653,7 @@
     height: 17
   - title: Total User Numbers - Quarterly
     name: Total User Numbers - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: single_value
     fields: [users.user_count]
@@ -677,7 +677,7 @@
     height: 6
   - title: Engagement Score - Quarterly
     name: Engagement Score - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.engagement_type, page_views.user_count]
@@ -709,7 +709,7 @@
     height: 6
   - title: Traffic Numbers - Quarterly
     name: Traffic Numbers - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
@@ -741,7 +741,7 @@
     height: 6
   - title: New Users Traffic - Quarterly
     name: New Users Traffic - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
@@ -775,7 +775,7 @@
     height: 6
   - title: Returning Users Traffic - Quarterly
     name: Returning Users Traffic - Quarterly
-    model: snowplow_looker
+    model: "@{model_name}"
     explore: page_views
     type: looker_grid
     fields: [page_views.total_advert_traffic, page_views.total_direct_traffic, page_views.total_display_traffic,
